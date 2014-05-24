@@ -1,0 +1,10 @@
+body {
+	padding-top: 50px;
+}
+.left-bar {
+	padding-top: 10px;
+	top: 50px;					/*Fullscreen settings*/
+	bottom: 0px;
+	position: fixed;
+	background-color: #F5F5F5;
+}

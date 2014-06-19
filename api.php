@@ -1,19 +1,26 @@
 <?php
-	// Router not needet
-	include("Slim\Slim.php");
-	\Slim\Slim::registerAutoloader();
-	$app = new \Slim\Slim();
-	
-	$app->get("/", function() {
-		
-	});
-	$app->get("/sql", function() {
-		echo "SQL test";
-	});
-	
-	$app->run();
-	
+	session_start();
 	if(isset($_POST["connectionTest"])) {
-		echo $_POST["dbUser"];
+		try {
+			$connection = new PDO("mysql:host=".$_POST["database"], $_POST["username"], $_POST["password"]);
+			$_SESSION["username"] = $_POST["username"];
+			$_SESSION["password"] = $_POST["password"];
+			$_SESSION["database"] = $_POST["database"];
+		} catch(PDOException $e) {
+			print("<span class=\"errorlevel\">".$e->getMessage()."</span>");
+			die();
+		}
+	}
+	if(isset($_POST["getData"])) {
+		if(isset($_SESSION["username"])) {
+			try {
+				$connection = new PDO("mysql:host=".$_POST["database"], $_POST["username"], $_POST["password"]);
+				foreach($connection->query("SHOW DATABASES") as $row)
+					print("<option>".$row."</option>");
+			} catch(PDOException $e) {
+				print("<span class=\"errorlevel\">".$e->getMessage()."</span>");
+				die();
+			}
+		}	
 	}
 ?>

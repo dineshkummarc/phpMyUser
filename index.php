@@ -1,9 +1,8 @@
-<?php
-	include("api.php");
-?>
+<?php include("api.php"); ?>
 <!doctype html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.css">
 		<link rel="stylesheet" href="css/custom.css">
@@ -11,7 +10,7 @@
 		<title>phpMyUser</title>
 	</head>
 	<body>
-		<?php include("modals.html") ?>
+		<?php include("modals.php") ?>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="navbar navbar-default navbar-fixed-top">
@@ -36,6 +35,7 @@
 				</div> <!--/left bar-->
 				<div class="col-xs-10 main-bar col-xs-offset-2">
 					World
+					<?php print_r($_SESSION) ?>
 				</div> <!--main bar-->
 			</div> <!--/body-->
 		</div>

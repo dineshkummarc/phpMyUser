@@ -29,18 +29,54 @@ $(".login-save").click(function () {
 		}
 	});
 });
+$(".database").change(function () {
+	$(".database option:selected").each(function () {
+		$.ajax({
+			url: api,
+			type: "POST",
+			data: "getTable=1&database=" + $(this).text(),
+			success: function (data) {
+				if($(data).filter(".errorlevel").length > 0)
+					alert($(data).filter(".errorlevel").html());
+				else
+					$(".tables").html(data);
+			},
+			error: function (data, status) {
+				console.log("Error:\n" + status + data);
+			}
+		});
+	});
+});
+$(".tables").change(function () {
+	$(".tables option:selected").each(function () {
+		$.ajax({
+			url: api,
+			type: "POST",
+			data: "getContent=1&table=" + $(this).text(),
+			success: function (data) {
+				$(".main-table").html("");
+				$(".main-table").append(data);
+			},
+			error: function (data, status) {
+				console.log("Error:\n" + status + data);
+			}
+		});
+	});
+});
 $.ajax({
 	url: api,
 	type: "POST",
 	data: "getData=1",
 	success: function(data) {
-		console.log(data);
+		if($(data).filter(".errorlevel").length > 0)
+			alert($(data).filter(".errorlevel").html());
+		else
+			$(".database").html(data);
 	},
 	error: function(data, status) {
 		console.log("Error:\n" + status + "\n" + data);
 	}
 });
-
 $(".login-username").val("root");
 $(".login-password").val("");
 $(".login-database").val("localhost");

@@ -31,11 +31,13 @@
 			<div class="row">
 				<div class="col-xs-2 left-bar">
 					<h5><button class="btn btn-primary btn-group-justified" data-toggle="modal" data-target=".login-form">Connect</button></h5>
-					<select size="3" class="form-control"></select> 
+					<h5><span class="label label-default">Databasse</span><select size="3" class="form-control database"></select></h5>
+					<h5><span class="label label-default">Tables</span><select size="3" class="form-control tables"></select></h5>
 				</div> <!--/left bar-->
 				<div class="col-xs-10 main-bar col-xs-offset-2">
-					World
-					<?php print_r($_SESSION) ?>
+					<table class="main-table table table-bordered table-striped">
+					
+					</table>
 				</div> <!--main bar-->
 			</div> <!--/body-->
 		</div>

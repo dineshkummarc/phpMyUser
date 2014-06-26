@@ -49,7 +49,9 @@
 				<h1>About</h1>
 			</div> <!--/modal-head-->
 			<div class="modal-body">
-				FooBar
+				<h3>phpMyUser</h3>
+				<h5>A lightweight database editor.</h5>
+				<a href="https://github.com/TheEarl/phpMyUser">https://github.com/TheEarl/phpMyUser</a>
 			</div> <!--/modal-body-->
 			<div class="modal-footer">
 				<button class="btn btn-default modal-close">Close</button>
@@ -64,7 +66,17 @@
 				<h1>Contact</h1>
 			</div> <!--/modal-head-->
 			<div class="modal-body">
-				FooBar
+				<form>
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<label>Message</label>
+						<textarea class="form-control"></textarea>
+					</div>
+					<button type="submit" class="btn btn-default">Send</button>
+				</form>
 			</div> <!--/modal-body-->
 			<div class="modal-footer">
 				<button class="btn btn-default modal-close">Close</button>

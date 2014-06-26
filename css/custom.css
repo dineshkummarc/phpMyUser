@@ -8,3 +8,6 @@ body {
 	position: fixed;
 	background-color: #F5F5F5;
 }
+td {
+	background-color: #000;
+}

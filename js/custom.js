@@ -47,20 +47,55 @@ $(".database").change(function () {
 		});
 	});
 });
-$(".tables").change(function () {
+$(".tables").click(function () {
 	$(".tables option:selected").each(function () {
+		$(".main-table").html("<table class=\"main-table table table-bordered\"></table>");
 		$.ajax({
 			url: api,
 			type: "POST",
-			data: "getContent=1&table=" + $(this).text(),
+			data: "getTableHead=1&table=" + $(this).text(),
+			dataType: "JSON",
 			success: function (data) {
-				$(".main-table").html("");
-				$(".main-table").append(data);
+				$(".main-table").append("<tr class=\"main-table-head\"></tr>");
+				$(".main-table-head").append("<th></th>");
+				$.each(data, function(key, val) {
+					$(".main-table-head").append("<th>" + val[0] + "</th>");
+				});
 			},
 			error: function (data, status) {
 				console.log("Error:\n" + status + data);
 			}
 		});
+		$.ajax({
+			url: api,
+			type: "POST",
+			data: "getTableContent=1&table=" + $(this).text(),
+			dataType: "JSON",
+			success: function (data) {
+				c = 0;
+				$.each(data, function(key, val) {
+					c++;
+					$(".main-table").append("<tr class=\"main-table-body-" + c.toString() + "\"></tr>");
+					$(".main-table-body-" + c.toString()).append("<td><input type=\"checkbox\" class=\"form-control main-table-body-" + c + "\"></td>");
+					$.each(val, function(key, val) {
+						$(".main-table-body-" + c.toString()).append("<td class=\"main-table-content\">" + val + "</td>");
+					});
+				});
+			},
+			error: function (data, status) {
+				console.log("Error:\n" + status + data);
+			}
+		});
+	});
+});
+$(".main-bar").on("DOMNodeInserted", function () {
+	$(".main-table-content").off();
+	$(".main-table-content").dblclick(function () {
+		index = $(this).index() + 1;
+		title = $(".main-table-head th:nth-child(" + index + ")").html();
+		oldEntry = $(this).html();
+		newEntry = window.prompt("Change: " + old);
+		
 	});
 });
 $.ajax({

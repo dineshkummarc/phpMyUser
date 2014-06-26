@@ -35,7 +35,7 @@
 					<h5><span class="label label-default">Tables</span><select size="3" class="form-control tables"></select></h5>
 				</div> <!--/left bar-->
 				<div class="col-xs-10 main-bar col-xs-offset-2">
-					<table class="main-table table table-bordered table-striped">
+					<table class="main-table table table-bordered">
 					
 					</table>
 				</div> <!--main bar-->
